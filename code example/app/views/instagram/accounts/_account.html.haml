@@ -1,0 +1,37 @@
+.col-12.m-b-5.p-b-1
+  .p-10.bg-white.rounded{ class: "#{ 'active' if (@instagram_account || parent) == account }" }
+    .media.media-xs.overflow-visible.align-items-center
+      = link_to instagram_account_path(account), class: 'media-left' do
+        = image_tag account.decorate.profile_picture_url, class: 'rounded-corner', alt: account.username
+      .media-body.m-l-20
+        = link_to instagram_account_path(account) do
+          %b.f-s-18.media-heading=  account.username
+
+        = link_to "https://instagram.com/#{account.username}", target: '_blank', class: 'm-l-15', data: { toggle: "tooltip", title: 'Open on Instagram' } do
+          %i.fas.fa-external-link-alt
+
+        - if (@instagram_account || parent) == account
+          .btn-group.btn-group-sm.dropdown.pull-right.m-t-5
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %i.fas.fa-cog.f-s-24
+            .dropdown-menu.dropdown-menu-right
+              = link_to edit_instagram_account_path(account), class: 'dropdown-item' do
+                %i.fas.fa-cog.f-s-14.text-black.p-r-5
+                Account Setting
+              .dropdown-divider
+
+              = link_to '', class: 'dropdown-item' do
+                %i.fas.fa-pen.f-s-14.text-black.p-r-5
+                Re-Login
+              .dropdown-divider
+
+              = link_to instagram_account_path(account), method: :delete, data: { confirm: 'Are you sure you want to delete your account from The SMM Tools?' }, class: 'dropdown-item' do
+                %i.fas.fa-trash-alt.f-s-14.text-red.p-r-5
+                Delete Account
+
+          .p-t-15.clearfix
+            %span.m-r-10= account.decorate.media_count
+            %span.m-r-10= account.decorate.follower_count
+            %span.m-r-10
+              = account.follow_count
+              following

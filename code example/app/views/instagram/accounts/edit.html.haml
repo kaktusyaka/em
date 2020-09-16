@@ -1,0 +1,61 @@
+.row
+  .col-md-3
+    #instagram_account_new_button
+    #instagram_accounts.row.m-t-25
+      = render partial: 'account', collection: collection
+  .col-md-9.bg-white
+    %ul.nav.nav-tabs.nav-tabs-inverse.nav-justified.nav-justified-mobile.bg-black-transparent-7.text-white{"data-sortable-id" => "index-2", :style => "border-bottom: 1px solid #ccc;"}
+      %li.nav-item
+        %a.nav-link.active{"data-toggle" => "tab", :href => "#settings"}
+          %i.fas.fa-cog.fa-lg.m-r-5
+          %span.d-none.d-md-inline Account Settings
+    .tab-content
+      = form_for resource do |f|
+        #settings.tab-pane.fade.active.show
+          .row
+            .col-12
+              %h4.mt-0.mb-1
+                %i.fas.fa-user-slash
+                Unfollow
+            .col-md-6.col-sm-12.col-xs-12
+              .form-group.row.m-b-15
+                = f.label :keep_personal_following, 'Keep personal following', class: 'col-form-label col-8'
+                .col-4
+                  .custom-control.custom-checkbox
+                    = f.check_box :keep_personal_following, class: 'custom-control-input'
+                    = f.label :keep_personal_following, '&nbsp;'.html_safe, class: 'custom-control-label'
+            .col-md-6.col-sm-12.col-xs-12
+              .form-group.row.m-b-15
+                = f.label :unfollow_without_follow_back, 'Unfollow without follow back', class: 'col-form-label col-8'
+                .col-4
+                  .custom-control.custom-checkbox
+                    = f.check_box :unfollow_without_follow_back, class: 'custom-control-input'
+                    = f.label :unfollow_without_follow_back, '&nbsp;'.html_safe, class: 'custom-control-label'
+            .col-md-6.col-sm-12.col-xs-12
+              .form-group.row.m-b-15
+                = f.label :unfollow_auto_number, 'Unfollow auto number', class: 'col-form-label col-8'
+                .col-4
+                  = f.number_field :unfollow_auto_number, class: 'form-control'
+            .col-md-6.col-sm-12.col-xs-12
+              .form-group.row.m-b-15
+                = f.label :unfollow_after_hours_follow_back, 'Unfollow after hours follow back', class: 'col-form-label col-8'
+                .col-4
+                  = f.number_field :unfollow_after_hours_follow_back, class: 'form-control'
+            .col-md-6.col-sm-12.col-xs-12
+              .form-group.row.m-b-15
+                = f.label :following_threshold, 'Following threshold', class: 'col-form-label col-8'
+                .col-4
+                  = f.number_field :following_threshold, class: 'form-control'
+          %hr
+
+          .row.m-t-20
+            .col-12
+              %h4.mt-0.mb-1
+                %i.fas.fa-list
+                Black List
+            .col-12.m-t-10
+              .form-group.m-b-15
+                = f.text_area :black_list, class: 'form-control', rows: 10
+
+          = f.submit 'Save', class: 'btn btn-large btn-lime m-r-5 m-t-15'
+          = link_to 'Cancel', resource_path, class: 'btn btn-large btn-secondary m-t-15'

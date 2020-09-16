@@ -1,0 +1,28 @@
+.row
+  .col-md-3
+    #instagram_account_new_button
+    #instagram_accounts.row.m-t-25
+      = render partial: 'account', collection: collection
+  .col-md-9.bg-white
+    %ul.nav.nav-tabs.nav-tabs-inverse.nav-justified.nav-justified-mobile.bg-black-transparent-7.text-white{"data-sortable-id" => "index-2", style: 'border-bottom: 1px solid #ccc;'}
+      %li.nav-item
+        %a.nav-link.active{"data-toggle" => "tab", :href => "#promotions"}
+          %i.fas.fa-rocket.fa-lg.m-r-5
+          %span.d-none.d-md-inline Promotion
+      %li.nav-item
+        %a.nav-link.disabled{"data-toggle" => "tab", :href => "javascript:;"}
+          %i.fas.fa-clock.fa-lg.m-r-5
+          %span.d-none.d-md-inline Scheduled Posts (Comming soon)
+    .tab-content
+      .tab-pane.fade.active.show#promotions
+        = link_to new_instagram_account_instagram_promotion_path(resource), class: 'btn btn-green btn-lng' do
+          %i.far.fa-dot-circle
+          Add Target
+
+        .m-b-20
+
+        - if resource.promotions.blank?
+          .alert.alert-warning.fade.show
+            No promotions. To start promote your Instagram Account, click button "Add Target"
+        - else
+          = render partial: 'instagram/instagram_promotions/promotion', collection: resource.promotions

@@ -1,0 +1,115 @@
+.profile
+  .profile-header
+    .profile-header-cover{ style: "background-image: url(#{current_user.decorate.profile_cover})" }
+    .profile-header-content
+      .profile-header-img
+        = image_tag current_user.decorate.avatar
+      .profile-header-info
+        %h4.mt-0.mb-1= current_user.full_name
+        %p.mb-2 &nbsp;
+    %ul.profile-header-tab.nav.nav-tabs.m-0.m-t-25
+      %li.nav-item
+        %a.nav-link.active.text-uppercase{"data-toggle" => "tab", :href => "#profile-about"} Settings
+      %li.nav-item
+        %a.nav-link.text-uppercase{ data: { toggle: :tab }, href: '#notifications' } Notifications
+.profile-content
+  .tab-content.p-0
+    #profile-about.tab-pane.fade.show.active
+      .row
+        .col-6.offset-3
+          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: nil, method: :put, class: 'bg-white p-10 p-t-15' }) do |f|
+            .row
+              .col-12.m-b-20
+                %h4.mt-0.mb-1 Profile Settings
+            - if resource.errors.any?
+              .row.m-b-15
+                .col-12
+                  = render "devise/shared/error_messages", resource: resource
+            .row
+              .col-12
+                .form-group.row.m-b-15
+                  = f.label :email, class: 'col-form-label col-3'
+                  .col-9
+                    = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+                    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                      %small.f-s-12.text-grey-darker Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+                .form-group.row.m-b-15
+                  = f.label :password, class: 'col-form-label col-3'
+                  .col-9
+                    = f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: "#{@minimum_password_length} characters minimum"
+                    %small.f-s-12.text-grey-darker (leave blank if you don't want to change it)
+
+                .form-group.row.m-b-15
+                  = f.label :current_password, class: 'col-form-label col-3'
+                  .col-9
+                    = f.password_field :current_password, autocomplete: "current-password", class: 'form-control'
+                    %small.f-s-12.text-grey-darker (we need your current password to confirm your changes)
+
+                .form-group.row.m-b-15
+                  = f.label :full_name, class: 'col-form-label col-3'
+                  .col-9
+                    = f.text_field :full_name, autocomplete: "full-name", class: 'form-control'
+
+                .form-group.row.m-b-15
+                  = f.label :time_zone, class: 'col-form-label col-3'
+                  .col-9
+                    = f.time_zone_select :time_zone, nil, { include_blank: false }, { class: 'form-control' }
+
+                .form-group.row.m-b-15
+                  = f.label :avatar, class: 'col-form-label col-3'
+                  .col-9
+                    = f.file_field :avatar, direct_upload: true, class: 'border-0', accept: 'image/png, image/jpeg, image/jpg'
+                    - if resource.avatar.attached?
+                      .checkbox.checkbox-css
+                        = f.check_box :remove_avatar
+                        = f.label :remove_avatar, 'Remove Avatar'
+
+                .form-group.row.m-b-15
+                  = f.label :profile_cover, class: 'col-form-label col-3'
+                  .col-9
+                    = f.file_field :profile_cover, direct_upload: true, class: 'border-0 ', accept: 'image/png, image/jpeg, image/jpg'
+                    - if resource.profile_cover.attached?
+                      .checkbox.checkbox-css
+                        = f.check_box :remove_profile_cover
+                        = f.label :remove_profile_cover, 'Remove Profile Cover'
+
+                -# %hr.row.m-b-15
+
+                -# .form-group.row.m-b-15
+                -#   = f.label :instagram_username, class: 'col-form-label col-3'
+                -#   .col-9
+                -#     = f.text_field :instagram_username, autocomplete: "off", class: 'form-control'
+                -#
+                -# .form-group.row.m-b-15
+                -#   = f.label :instagram_password, class: 'col-form-label col-3'
+                -#   .col-9
+                -#     = f.password_field :instagram_password, autocomplete: "off", class: 'form-control'
+
+            .row
+              .col-12
+                %hr.row-m-b-15
+                .row-m-b-15
+                  = link_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger pull-right'
+                  = f.submit 'Update', class: 'btn btn-primary width-150 pull-left'
+
+    #notifications.tab-pane.fade
+      .row
+        .col-6.offset-3
+          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: nil, method: :put, class: 'bg-white p-10 p-t-15' }) do |f|
+            .row
+              .col-12.m-b-20
+                %h4.mt-0.mb-1 Notification Settings
+            .row
+              .col-12
+                .form-group.row
+                  .col-12
+                    .checkbox.checkbox-css
+                      = f.check_box :allow_email_on_complete_order
+                      = f.label :allow_email_on_complete_order, 'Send email when order is completed'
+
+            .row
+              .col-12
+                %hr.row-m-b-15
+                .row-m-b-15
+                  = f.submit 'Update', class: 'btn btn-primary width-150 pull-left'

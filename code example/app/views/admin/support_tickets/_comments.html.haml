@@ -1,0 +1,11 @@
+- comments.each do |comment|
+  %div
+    .active_admin_comment_meta
+      %h4.active_admin_comment_author
+        = comment.user.blank? ? 'Support Team' : link_to(comment.user.full_name, [:admin, comment.user])
+    %span.pretty_format= comment.created_at
+    %br
+    %br
+    = comment.description
+    = render 'application/attached_files', files: comment.files
+  %hr{ style: 'border-top: 2px dashed black' }

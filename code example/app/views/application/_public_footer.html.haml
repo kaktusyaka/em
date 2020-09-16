@@ -1,0 +1,44 @@
+#footer.footer.p-b-0
+  / BEGIN container
+  .container
+    / BEGIN row
+    .row
+      / BEGIN col-3
+      .col-lg-6
+        %h4.footer-header RELATED LINKS
+        %ul.fa-ul.mb-lg-4.mb-0
+          %li
+            %i.fa.fa-li.fa-angle-right
+            = link_to 'FAQ', page_path('faq')
+          %li
+            %i.fa.fa-li.fa-angle-right
+            = link_to 'Terms of Use', page_path('terms')
+          %li
+            %i.fa.fa-li.fa-angle-right
+            = link_to 'Contact Us', contact_us_path
+          %li
+            %i.fa.fa-li.fa-angle-right
+            = link_to 'Privacy & Policy', page_path('privacy')
+
+      .col-lg-3.offset-lg-3
+        %h4.footer-header OUR CONTACT
+        %address.mb-lg-4.mb-0
+          %abbr{:title => "Email"} Email:
+          = mail_to Setting.email, Setting.email, encode: "javascript"
+          -# %br/
+          -# %abbr{:title => "Skype"} Skype:
+          -# %a{:href => "skype:myshop"} myshop
+
+#footer-copyright.footer-copyright.p-b-0
+  / BEGIN container
+  .container
+    .payment-method
+      %p.social-list.f-s-20
+        - if Setting.facebook_url.present?
+          %a{:href => Setting.facebook_url}
+            %i.fab.fa-facebook-f.fa-fw
+        - if Setting.instagram_url.present?
+          %a{:href => Setting.instagram_url}
+            %i.fab.fa-instagram.fa-fw
+    .copyright
+      Copyright © #{ Date.current.year } The SMM Tools. All rights reserved.

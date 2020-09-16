@@ -1,0 +1,15 @@
+.m-t-20
+  .text-center.f-s-14.text-white
+    &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+    Or
+    &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+  .m-t-20.text-center
+    = link_to omniauth_authorize_path(resource_name, 'facebook'), class: 'btn btn-lg btn-block btn-social btn-facebook', method: :post do
+      %span.fab.fa-facebook
+      Sign #{text} with Facebook
+    -# = link_to omniauth_authorize_path(resource_name, 'google_oauth2'), class: 'btn btn-lg btn-block btn-social btn-google', method: :post do
+    -#   %span.fab.fa-google
+    -#   Sign #{text} with Google
+    -# = link_to omniauth_authorize_path(resource_name, 'instagram'), class: 'btn btn-lg btn-block btn-social btn-instagram', method: :post do
+    -#   %span.fab.fa-instagram
+    -#   Sign #{text} with Instagram

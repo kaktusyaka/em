@@ -1,0 +1,8 @@
+- if files.any?
+  %h5.p-b-15.m-t-20 Attached Files
+  %ul.list-unstyled
+    - files.each do |f|
+      %li
+        %i.fas.fa-paperclip
+        = link_to url_for(f), target: '_blank' do
+          = f.filename.to_s

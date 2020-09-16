@@ -1,0 +1,103 @@
+.row
+  .col-md-3
+    #instagram_account_new_button
+    #instagram_accounts.row.m-t-25
+      = render partial: 'instagram/accounts/account', collection: current_user.instagram_accounts
+  .col-md-9.bg-white
+    %ul.nav.nav-tabs.nav-tabs-inverse.nav-justified.nav-justified-mobile.bg-black-transparent-7.text-white{"data-sortable-id" => "index-2", style: 'border-bottom: 1px solid #ccc;'}
+      %li.nav-item
+        %a.nav-link.active{"data-toggle" => "tab", :href => "#promotions"}
+          %i.fas.fa-rocket.fa-lg.m-r-5
+          %span.d-none.d-md-inline #{resource.new_record? ? 'Add' : 'Edit' } Promotion
+    .tab-content
+      .tab-pane.fade.active.show#promotions
+        = form_for [parent, resource] do |f|
+          = render "devise/shared/error_messages", resource: resource
+          #settings.tab-pane.fade.active.show
+            - if resource.new_record?
+              .row
+                .col-12
+                  %h4.mt-0.mb-1
+                    %i.fas.fa-user
+                    Competitor
+
+                .col-md-6.col-sm-12.col-xs-12
+                  .form-group.row.m-b-15
+                    = f.label :target, 'Your competitor', class: 'col-form-label col-3'
+                    .col-9
+                      = f.text_field :target, placeholder: 'Select competitor', class: 'typeahead form-control'
+
+              %hr
+              .m-t-20
+            .row
+              .col-12
+                %h4.mt-0.mb-1
+                  %i.fas.fa-cog
+                  Extra Options
+              .col-md-6.col-sm-12.col-xs-12
+                .form-group.row.m-b-15
+                  = f.label :account_gender, 'Gender', class: 'col-form-label col-8'
+                  .col-4
+                    = f.select :account_gender, [['Select Gender', nil], 'Male', 'Female'], {}, class: 'form-control'
+              .col-md-6.col-sm-12.col-xs-12
+              .col-md-6.col-sm-12.col-xs-12
+                .form-group.row.m-b-15
+                  = f.label :skip_used_accounts, 'Skip used accounts', class: 'col-form-label col-8'
+                  .col-4
+                    .custom-control.custom-checkbox
+                      = f.check_box :skip_used_accounts, class: 'custom-control-input'
+                      = f.label :skip_used_accounts, '&nbsp;'.html_safe, class: 'custom-control-label'
+              .col-md-6.col-sm-12.col-xs-12
+                .form-group.row.m-b-15
+                  = f.label :skip_private_accounts, 'Skip private accounts', class: 'col-form-label col-8'
+                  .col-4
+                    .custom-control.custom-checkbox
+                      = f.check_box :skip_private_accounts, class: 'custom-control-input'
+                      = f.label :skip_private_accounts, '&nbsp;'.html_safe, class: 'custom-control-label'
+              .col-md-6.col-sm-12.col-xs-12
+                .form-group.row.m-b-15
+                  = f.label :skip_business_accounts, 'Skip business accounts', class: 'col-form-label col-8'
+                  .col-4
+                    .custom-control.custom-checkbox
+                      = f.check_box :skip_business_accounts, class: 'custom-control-input'
+                      = f.label :skip_business_accounts, '&nbsp;'.html_safe, class: 'custom-control-label'
+              .col-md-6.col-sm-12.col-xs-12
+                .form-group.row.m-b-15
+                  = f.label :skip_without_avatar, 'Skip without avatar', class: 'col-form-label col-8'
+                  .col-4
+                    .custom-control.custom-checkbox
+                      = f.check_box :skip_without_avatar, class: 'custom-control-input'
+                      = f.label :skip_without_avatar, '&nbsp;'.html_safe, class: 'custom-control-label'
+            %hr
+            .row.m-t-20
+              .col-12
+                %h4.mt-0.mb-1
+                  %i.fas.fa-tachometer-alt
+                  Limits
+              .col-md-6.col-sm-12.col-xs-12
+                .form-group.row.m-b-15
+                  = f.label :max_followers, 'Maximum followers', class: 'col-form-label col-8'
+                  .col-4
+                    = f.number_field :max_followers, class: 'form-control'
+              .col-md-6.col-sm-12.col-xs-12
+                .form-group.row.m-b-15
+                  = f.label :max_following, 'Maximum following', class: 'col-form-label col-8'
+                  .col-4
+                    = f.number_field :max_following, class: 'form-control'
+              .col-md-6.col-sm-12.col-xs-12
+                .form-group.row.m-b-15
+                  = f.label :min_posts, 'Minimum posts', class: 'col-form-label col-8'
+                  .col-4
+                    = f.number_field :min_posts, class: 'form-control'
+              .col-12
+                .form-group.row.m-b-15
+                  = f.label :stop_words, 'Stop words'
+                  = f.text_area :stop_words, class: 'form-control'
+              .col-12
+                .form-group.row.m-b-15
+                  = f.label :white_words, 'White words'
+                  = f.text_area :white_words, class: 'form-control'
+
+
+            = f.submit 'Save', class: 'btn btn-large btn-lime m-r-5 m-t-15'
+            = link_to 'Cancel', parent_path, class: 'btn btn-large btn-secondary m-t-15'

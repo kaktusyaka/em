@@ -1,0 +1,4 @@
+WAIT=30
+TIMEOUT=60
+ATTEMPTS=10
+/check_deploy deploy_successful

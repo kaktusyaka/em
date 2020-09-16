@@ -1,0 +1,77 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "UTF-8"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
+    = display_meta_tags og: { title: :title,
+                              site_name: 'The SMM Tools',
+                              type: 'website',
+                              url: request.original_url,
+                              description: :description,
+                              locale: 'en_US' },
+                        site: 'The SMM Tools — Buy Instagram Likes, Followers and Views. Instant Delivery',
+                        protect_images: true,
+                        twitter: { card: 'summary_large_image',
+                                   title: :title,
+                                   description: :description },
+                        reverse: true,
+                        canonical: request.original_url
+
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = favicon_link_tag asset_path('favicons/apple-icon-57x57.png'), rel: 'apple-touch-icon', sizes: '57x57'
+    = favicon_link_tag asset_path('favicons/apple-icon-60x60.png'), rel: 'apple-touch-icon', sizes: '60x60'
+    = favicon_link_tag asset_path('favicons/apple-icon-72x72.png'), rel: 'apple-touch-icon', sizes: '72x72'
+    = favicon_link_tag asset_path('favicons/apple-icon-76x76.png'), rel: 'apple-touch-icon', sizes: '76x76'
+    = favicon_link_tag asset_path('favicons/apple-icon-114x114.png'), rel: 'apple-touch-icon', sizes: '114x114'
+    = favicon_link_tag asset_path('favicons/apple-icon-120x120.png'), rel: 'apple-touch-icon', sizes: '120x120'
+    = favicon_link_tag asset_path('favicons/apple-icon-144x144.png'), rel: 'apple-touch-icon', sizes: '144x144'
+    = favicon_link_tag asset_path('favicons/apple-icon-152x152.png'), rel: 'apple-touch-icon', sizes: '152x152'
+    = favicon_link_tag asset_path('favicons/apple-icon-180x180.png'), rel: 'apple-touch-icon', sizes: '180x180'
+    = favicon_link_tag asset_path('favicons/android-icon-192x192.png'), rel: 'icon', sizes: '192x192', type: 'image/png'
+    = favicon_link_tag asset_path('favicons/favicon-32x32.png'), rel: 'icon', sizes: '32x32', type: 'image/png'
+    = favicon_link_tag asset_path('favicons/favicon-96x96.png'), rel: 'icon', sizes: '96x96', type: 'image/png'
+    = favicon_link_tag asset_path('favicons/favicon-16x16.png'), rel: 'icon', sizes: '16x16', type: 'image/png'
+    = favicon_link_tag asset_path('favicons/ms-icon-144x144.png'), name: 'msapplication-TileImage'
+
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'
+    = stylesheet_pack_tag 'public_app', 'data-turbolinks-track': 'reload'
+    = javascript_packs_with_chunks_tag 'public_app', 'data-turbolinks-track': 'reload'
+    - if Rails.env.production?
+      = render 'application/google_analytics'
+      = render 'application/drift_messenger'
+
+
+  %body{"data-offset" => "51", "data-spy" => "scroll", "data-target" => "#header"}
+    %noscript
+      %iframe{:height => "0", :src => "https://www.googletagmanager.com/ns.html?id=GTM-WJSCX6C", :style => "display:none;visibility:hidden", :width => "0"}
+    #page-container
+      / begin #header
+      #header.header.navbar.navbar-inverse.navbar-fixed-top.navbar-expand-lg
+        / begin container
+        .container
+          / begin navbar-brand
+          = link_to root_path, class: 'navbar-brand' do
+            = image_tag 'logo.png', alt: 'logo'
+          / end navbar-brand
+          / begin navbar-toggle
+          %button.navbar-toggle{'aria-expanded' => "false", 'data-target' => "#header-navbar", 'data-toggle' => "collapse", type: "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          / end navbar-header
+          / begin navbar-collapse
+          = render 'application/public_navbar'
+          / end navbar-collapse
+        / end container
+      / end #header
+      / begin #home
+      = yield
+
+    - if current_user
+      = render 'application/footer'
+    - else
+      = render 'application/public_footer'

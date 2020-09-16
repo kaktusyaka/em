@@ -1,0 +1,40 @@
+:ruby
+  set_meta_tags(title: 'Login',
+                description: 'Get Instagram followers, likes and views instantly and with best prices on the market!')
+
+
+.login-cover
+  .login-cover-image{"data-id" => "login-cover-image", :style => "background-image: url(#{asset_path("devise/#{rand(10)}.jpg")})"}
+  .login-cover-bg
+#page-container
+  .login.login-v2{"data-pageload-addclass" => "animated fadeIn"}
+    .login-header
+      .brand
+        = image_tag 'logo.png', alt: 'logo', height: 50
+
+        Sign In
+        %small Login into your The SMM Tools Account.
+    .login-content
+      = form_for(resource, as: resource_name, url: session_path(resource_name), class: 'margin-bottom-0') do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .form-group.m-b-20
+          = f.email_field :email, autocomplete: "email", class: 'form-control form-control-lg', placeholder: 'Email Address'
+        .form-group.m-b-20
+          = f.password_field :password, autocomplete: "current-password", class: 'form-control form-control-lg', placeholder: 'Password'
+        .checkbox.checkbox-css.m-b-20
+          = f.check_box :remember_me
+          = f.label :remember_me, 'Remember Me'
+        .m-t-20
+          %span
+            By signin in, you agree to The SMM Tools's #{link_to 'Terms of Service', page_path('terms')} , and #{link_to 'Privacy Policy', page_path('privacy')} .
+
+        .login-buttons.m-t-20
+          = f.submit 'Sign in with Email', class: 'btn btn-primary btn-block btn-lg'
+        = render 'social_login', text: 'in'
+
+        .m-t-20
+          Not a member yet?
+          = link_to 'Click here to register.', new_user_registration_path
+        .m-t-20
+          Forgot your password?
+          = link_to 'Click here to reset password.', new_user_password_path

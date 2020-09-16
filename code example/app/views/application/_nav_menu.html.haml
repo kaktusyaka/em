@@ -1,0 +1,108 @@
+- if orders_page? || payments_page?
+  = yield :trial_message
+
+  .p-t-0.p-b-0.row.m-l-10
+    / begin col-3
+    .col-xl-4.col-md-6
+      = link_to new_order_path, class: 'text-decoration-none nav-link-widget' do
+        .widget.widget-stats.bg-teal
+          .stats-icon.stats-icon-lg
+            %i.fas.fa-cart-plus.fa-fw
+          .stats-info
+            %p.text-white New Order
+          .stats-link
+            Buy followers, likes and views
+            %i.fas.fa-arrow-alt-circle-right
+
+    .col-xl-4.col-md-6
+      = link_to history_orders_path, class: 'text-decoration-none nav-link-widget' do
+        .widget.widget-stats.bg-info
+          .stats-icon.stats-icon-lg
+            %i.fas.fa-history.fa-fw
+          .stats-info
+            %p.text-white Orders History
+          .stats-link
+            Track your orders
+            %i.fas.fa-arrow-alt-circle-right
+
+-# - if instagram_account_show_page?
+-#   .p-t-0.p-b-0.row.m-l-10
+-#     / begin col-3
+-#     .col-xl-4.col-md-6
+-#       = link_to instagram_accounts_path, class: 'text-decoration-none nav-link-widget' do
+-#         .widget.widget-stats.bg-teal
+-#           .stats-icon.stats-icon-lg
+-#             %i.fab.fa-instagram.fa-fw
+-#           .stats-info
+-#             %p.text-white Your Connected Accounts
+-#           .stats-link
+-#             Your connected instagram accounts
+-#             %i.fas.fa-arrow-alt-circle-right
+
+    -# .col-xl-4.col-md-6
+    -#   = link_to history_orders_path, class: 'text-decoration-none nav-link-widget' do
+    -#     .widget.widget-stats.bg-info
+    -#       .stats-icon.stats-icon-lg
+    -#         %i.fas.fa-history.fa-fw
+    -#       .stats-info
+    -#         %p.text-white Orders History
+    -#       .stats-link
+    -#         Track your orders
+    -#         %i.fas.fa-arrow-alt-circle-right
+    -# .col-xl-4.col-md-6
+      = link_to 'javascript;;', class: 'text-decoration-none' do
+        .widget.widget-stats.bg-orange
+          .stats-icon.stats-icon-lg
+            %i.fas.fa-cogs.fa-fw
+          .stats-info
+            %p.text-white
+              Automation
+              %span.btn.btn-sm.btn-danger.f-s-10 comming soon...
+          .stats-link
+            Manage your patterns
+            %i
+            -# %i.fas.fa-arrow-alt-circle-right
+
+    -# .col-xl-4.col-md-6
+    -#   = link_to , class: "text-decoration-none" do
+    -#     .widget.widget-stats.bg-info
+    -#       .stats-icon.stats-icon-lg
+    -#         %i.fas.fa-history.fa-fw
+    -#       .stats-content
+    -#         .stats-title
+    -#         .stats-number
+    -#         .stats-desc
+    -# .col-xl-4.col-md-6
+    -#   = link_to 'javascript:;', class: 'text-decoration-none text-muted' do
+    -#     .widget.widget-stats.bg-orange
+    -#       .stats-icon.stats-icon-lg
+    -#         %i.fas.fa-cogs.fa-fw
+    -#       .stats-content
+    -#         .stats-title
+    -#         .stats-number Automation
+    -#         .stats-desc Create your patterns
+
+- if support_pages?
+  .p-t-0.p-b-0.row.m-l-10
+    / begin col-3
+    .col-xl-4.col-md-6
+      = link_to new_support_ticket_path, class: 'text-decoration-none nav-link-widget' do
+        .widget.widget-stats.bg-teal
+          .stats-icon.stats-icon-lg
+            %i.fas.fa-plus.fa-fw
+          .stats-info
+            %p.text-white New Ticket
+          .stats-link
+            Get help from our support team
+            %i.fas.fa-arrow-alt-circle-right
+
+    .col-xl-4.col-md-6
+      = link_to support_tickets_path, class: 'text-decoration-none nav-link-widget' do
+        .widget.widget-stats.bg-info
+          .stats-icon.stats-icon-lg
+            %i.fas.fa-history.fa-fw
+          .stats-info
+            %p.text-white All Tickets
+          .stats-link
+            Find all your support tickets
+            %i.fas.fa-arrow-alt-circle-right

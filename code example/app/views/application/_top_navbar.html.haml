@@ -1,0 +1,24 @@
+#top-navbar.collapse.navbar-collapse.f-s-14
+  %ul.nav.navbar-nav
+    %li.nav-item{ class: "#{'active' if orders_page?}" }
+      = link_to orders_path, class: 'nav-link' do
+        %i.fas.fa-thumbs-up.fa-fw.mr-1.mr-md-0
+        Buy Likes/View
+    - if can? :instagram_section, current_user
+      %li.nav-item{ class: "#{'active' if instagram_page?}" }
+        = link_to instagram_accounts_path, class: 'nav-link' do
+          %i.fab.fa-instagram.fa-fw.mr-1.mr-md-0
+          Instagram
+    %li.nav-item{ class: "#{'active' if prices_internal_page?}" }
+      = link_to prices_suppot_index_path, class: 'nav-link' do
+        %i.fas.fa-dollar-sign.fa-fw.mr-1.mr-md-0
+        Prices
+
+    %li.nav-item{ class: "#{'active' if faq_internal_page?}" }
+      = link_to faq_suppot_index_path, class: 'nav-link' do
+        %i.fas.fa-info.fa-fw.mr-1.mr-md-0
+        FAQ
+    %li.nav-item{ class: "#{'active' if support_pages?}" }
+      = link_to support_tickets_path, class: 'nav-link' do
+        %i.fas.fa-phone.fa-fw.mr-1.mr-md-0
+        Support

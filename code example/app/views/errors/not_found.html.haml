@@ -1,0 +1,27 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title The SMM Tools | 404 Error Page
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    / ================== BEGIN BASE CSS STYLE ==================
+    = csrf_meta_tags
+    = csp_meta_tag
+    = javascript_include_tag "https://js.stripe.com/v3/"
+    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_packs_with_chunks_tag 'application', 'data-turbolinks-track': 'reload'
+    / ================== END BASE CSS STYLE ==================
+  %body.pace-top
+    #page-container
+      .error
+        .error-code 404
+        .error-content
+          .error-message We couldn't find it...
+          .error-desc.mb-3.mb-sm-4.mb-md-5
+            The page you're looking for doesn't exist.
+            %br/
+            Perhaps, there pages will help find what you're looking for.
+          %div
+            = link_to 'Go Home', root_path, class: 'btn btn-success p-l-20 p-r-20'

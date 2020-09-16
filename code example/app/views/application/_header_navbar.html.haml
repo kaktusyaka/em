@@ -1,0 +1,26 @@
+#header.header.navbar-default
+  .navbar-header
+    = link_to root_path, class: 'navbar-brand' do
+      = image_tag 'logo.png'
+
+    %button.navbar-toggle{ type: "button", 'data-toggle' => "collapse", 'data-target' => "#top-navbar" }
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+
+  = render 'application/top_navbar'
+
+  %ul.navbar-nav.navbar-right
+    %li.dropdown
+      = link_to balance_payments_path, class: 'bg-danger font-weight-bold text-white f-s-14' do
+        = number_to_currency(current_user.balance)
+        \-  Top Up
+    %li.dropdown.navbar-user
+      %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#"}
+        = image_tag current_user.decorate.avatar
+        %span.d-none.d-md-inline.f-s-14= current_user.full_name
+        %b.caret
+      .dropdown-menu.dropdown-menu-right{:style => "position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(4px, 50px, 0px);", "x-placement" => "bottom-end"}
+        = link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item'
+        .dropdown-divider
+        = link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'dropdown-item'

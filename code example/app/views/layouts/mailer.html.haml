@@ -1,0 +1,156 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width", :name => "viewport"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title= message.subject
+    :css
+
+      .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      }
+
+      .btn-large {
+        padding: .5rem 1rem;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        border-radius: .3rem;
+      }
+
+      /* -------------------------------------
+          INLINED WITH htmlemail.io/inline
+      ------------------------------------- */
+      /* -------------------------------------
+          RESPONSIVE AND MOBILE FRIENDLY STYLES
+      ------------------------------------- */
+      @media only screen and (max-width: 620px) {
+        table[class=body] h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important;
+        }
+        table[class=body] p,
+              table[class=body] ul,
+              table[class=body] ol,
+              table[class=body] td,
+              table[class=body] span,
+              table[class=body] a {
+          font-size: 16px !important;
+        }
+        table[class=body] .wrapper,
+              table[class=body] .article {
+          padding: 10px !important;
+        }
+        table[class=body] .content {
+          padding: 0 !important;
+        }
+        table[class=body] .container {
+          padding: 0 !important;
+          width: 100% !important;
+        }
+        table[class=body] .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important;
+        }
+        table[class=body] .btn table {
+          width: 100% !important;
+        }
+        table[class=body] .btn a {
+          width: 100% !important;
+        }
+        table[class=body] .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important;
+        }
+      }
+
+      /* -------------------------------------
+          PRESERVE THESE STYLES IN THE HEAD
+      ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%;
+        }
+        .ExternalClass,
+              .ExternalClass p,
+              .ExternalClass span,
+              .ExternalClass font,
+              .ExternalClass td,
+              .ExternalClass div {
+          line-height: 100%;
+        }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important;
+        }
+        .btn-primary table td:hover {
+          background-color: #34495e !important;
+        }
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important;
+        }
+      }
+  %body{:style => "background-color: #f6f6f6; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"}
+    %a{:href => "https://thesmmtools.com", :rel => "noopener noreferrer", :style => "text-decoration: none;", :target => "_blank"}
+      %img{:alt => "Logo", :border => "0", :height => "60", :hspace => "0", :src => "https://thesmmtools.s3-ap-southeast-2.amazonaws.com/email_templates/logo.png", :style => "color: #000000; font-size: 10px; margin: 0; margin-top: 20px; margin-left: auto; margin-right: auto; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;", :title => "Logo", :vspace => "0"}/
+
+    %table.body{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background-color: #f6f6f6;"}
+      %tr
+        %td{ colspan: 2 }
+      %tr
+        %td{:style => "font-family: sans-serif; font-size: 14px; vertical-align: top;"}  
+        %td.container{:style => "font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; Margin: 0 auto; max-width: 580px; padding: 10px; width: 580px;"}
+          .content{:style => "box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 10px;"}
+            / START CENTERED WHITE CONTAINER
+            %span.preheader{:style => "color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;"}= message.subject
+            %table.main{:style => "border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;"}
+              / START MAIN CONTENT AREA
+              = yield
+
+              / END MAIN CONTENT AREA
+            / START FOOTER
+            .footer{:style => "clear: both; Margin-top: 10px; width: 100%; font-size: 14px;"}
+              %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;"}
+                %tr
+                  %td.content-block.powered-by{:style => "font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #777777;"}
+                    The SMM Tools Team
+                    %br
+                    %br
+                    Email:
+                    = mail_to Setting.email, Setting.email, style: "text-decoration: underline; color: #777777; font-size: 12px;"
+                    %br/
+                    Web:
+                    = link_to 'https://thesmmtools.com', 'https://thesmmtools.com', style: "text-decoration: underline; color: #777777; font-size: 12px;"
+                    %br
+                    %br
+                    Follow us on:
+                    %p
+                      = link_to Setting.facebook_url.to_s, title: 'Facebook Page', style: "text-decoration: none;" do
+                        = image_tag 'https://thesmmtools.s3-ap-southeast-2.amazonaws.com/email_templates/social-icons/facebook.png', width: 44, height: 44
+                      &nbsp;
+                      &nbsp;
+                      = link_to Setting.instagram_url.to_s, title: 'Instagram', style: "text-decoration: none;" do
+                        = image_tag 'https://thesmmtools.s3-ap-southeast-2.amazonaws.com/email_templates/social-icons/instagram.png', width: 44, height: 44
+            / END FOOTER
+            / END CENTERED WHITE CONTAINER
+        %td{:style => "font-family: sans-serif; font-size: 14px; vertical-align: top;"}  

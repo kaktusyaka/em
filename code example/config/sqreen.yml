@@ -1,0 +1,2 @@
+app_name: <%= Rails.application.credentials.sqreen.dig(:app_name) %>
+token: <%= Rails.application.credentials.sqreen.dig(:token) %>

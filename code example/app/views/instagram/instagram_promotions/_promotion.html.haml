@@ -1,0 +1,54 @@
+.col-md-4.col-xs-12.col-sm-12
+  .note.note-warning.m-b-15.shadow{ class: "#{'in_progress' if promotion.in_progress?}" }
+    .note-icon{ style: 'align-items: initial' }
+      = link_to edit_instagram_account_instagram_promotion_path(resource.username, promotion) do
+        = image_tag promotion.decorate.profile_picture_url, class: 'rounded-corner', alt: promotion.target, size: '60x60'
+    .note-content
+      %h4
+        = link_to promotion.target, edit_instagram_account_instagram_promotion_path(resource.username, promotion), title: 'Edit promotion'
+        = link_to "https://instagram.com/#{promotion.target}", target: "_blank", class: "m-l-15" do
+          %i.fas.fa-external-link-alt.f-s-14{ title: 'Open on Instagram' }
+        .btn-group.btn-group-sm.dropdown.pull-right
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            %i.fas.fa-cog.f-s-24
+          .dropdown-menu.dropdown-menu-right
+            %a.dropdown-item{:href => edit_instagram_account_instagram_promotion_path(resource.username, promotion)}
+              %i.fas.fa-cog.f-s-14.text-black.p-r-5
+              Settings
+            .dropdown-divider
+            = link_to instagram_account_instagram_promotion_path(resource.username, promotion), class: 'dropdown-item', data: { confirm: "Are you sure you want to delete this promotion from The SMM Tools?", method: 'delete' } do
+              %i.fas.fa-trash-alt.f-s-14.text-red.p-r-5
+              Delete
+      %p
+        .widget-chart-info-progress
+          %b Skiped
+          %span.pull-right #{promotion.users.where(skiped: true).size} / #{promotion.total_followers}
+        .progress.progress-sm.m-b-15
+          .progress-bar.progress-bar-striped.progress-bar-animated.rounded-corner.bg-orange{ style: "width: #{promotion.decorate.skiped_percentage}%" }
+
+        .widget-chart-info-progress
+          %b Coverage
+          %span.pull-right #{promotion.users.where(skiped: false).size} / #{promotion.total_followers}
+        .progress.progress-sm.m-b-15
+          .progress-bar.progress-bar-striped.progress-bar-animated.rounded-corner.bg-green{ style: "width: #{promotion.decorate.coverage_percentage}%" }
+
+        %p.f-s-16
+          %b Convertaion:
+          %span 3%
+        %p.f-s-16
+          %b Status:
+          %span.label{ class: promotion.decorate.status_css_class }= promotion.status.humanize
+
+        .m-t-20
+
+        - if promotion.waiting? || promotion.paused?
+          = link_to in_progress_instagram_account_instagram_promotion_path(resource.username, promotion), method: :post, class: 'btn btn-green m-r-10', data: { toggle: :tooltip, placement: :top }, title: "Start Promotion" do
+            %i.fas.fa-play
+
+        - if promotion.in_progress?
+          = link_to pause_instagram_account_instagram_promotion_path(resource.username, promotion), method: :post, class: 'btn btn-secondary m-r-10', data: { toggle: :tooltip, placement: :top }, title: "Pause Promotion" do
+            %i.fas.fa-pause
+
+        - if !promotion.finished? && !promotion.errored?
+          = link_to finish_instagram_account_instagram_promotion_path(resource.username, promotion), method: :post, class: 'btn btn-warning m-r-10', data: { toggle: :tooltip, placement: :top }, title: "Cancel Promotion" do
+            %i.fas.fa-stop

@@ -1,0 +1,39 @@
+#header-navbar.collapse.navbar-collapse
+  %ul.nav.navbar-nav.navbar-right
+    -# %li.nav-item.dropdown
+      %a.nav-link.active{"data-click" => "scroll-to-target", "data-scroll-target" => "#home", "data-toggle" => "dropdown", :href => "#home"}
+        HOME
+      -#   %b.caret
+      -# .dropdown-menu.dropdown-menu-left.animated.fadeInDown
+      -#   %a.dropdown-item{:href => "index.html"} Page with Transparent Header
+      -#   %a.dropdown-item{:href => "index_inverse_header.html"} Page with Inverse Header
+      -#   %a.dropdown-item{:href => "index_default_header.html"} Page with White Header
+      -#   %a.dropdown-item{:href => "extra_element.html"} Extra Element
+    -# %li.nav-item
+    -#   = link_to 'INSTAGRAM LIKES & VIDEO VIEWS', root_path, class: 'nav-link'
+    %li.nav-item
+      = link_to 'PRICING', page_path('prices'), class: "nav-link text-white #{ 'active' if public_pricing_page? }"
+    %li.nav-item
+      = link_to 'FAQ', page_path('faq'), class: "nav-link text-white #{ 'active' if public_faq_page? }"
+    %li.nav-item
+      = link_to 'CONTACT', contact_us_path, class: "nav-link text-white #{ 'active' if public_contact_us_page? }"
+    - if current_user
+      %li.nav-item
+        = link_to 'DASHBOARD', orders_path, class: 'nav-link btn btn-primary p-t-10 p-b-10 text-white m-t-10', data: { turbolinks: 'false' }
+    - else
+      %li.nav-item
+        = link_to 'LOGIN', new_user_session_path, class: 'nav-link text-white', data: { turbolinks: 'false' }
+      %li.nav-item
+        = link_to 'SIGN UP', new_user_registration_path, class: 'nav-link text-white', data: { turbolinks: 'false' }
+    -# %li.nav-item
+    -#   %a.nav-link{"data-click" => "scroll-to-target", :href => "#team"} TEAM
+    -# %li.nav-item
+    -#   %a.nav-link{"data-click" => "scroll-to-target", :href => "#service"} SERVICES
+    -# %li.nav-item
+    -#   %a.nav-link{"data-click" => "scroll-to-target", :href => "#work"} WORK
+    -# %li.nav-item
+    -#   %a.nav-link{"data-click" => "scroll-to-target", :href => "#client"} CLIENT
+    -# %li.nav-item
+    -#   %a.nav-link{"data-click" => "scroll-to-target", :href => "#pricing"} PRICING
+    -# %li.nav-item
+    -#   %a.nav-link{"data-click" => "scroll-to-target", :href => "#contact"} CONTACT
